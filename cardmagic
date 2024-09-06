@@ -1,0 +1,368 @@
+import random
+#issues to sort of: formatting of the cards displayed, the top line seems to keep shifting rightwards
+
+#back of the card design 
+upside_down= " _________\n|\/\/\/\/\|\n|/\/\/\/\/|\n|\/\/\/\/\|\n|/\/\/\/\/|\n|\/\/\/\/\|\n|/\/\/\/\/|\n-----------"
+table = "\
+___________________________________\n\
+|  ______                          |\n\
+|  |\/\/\|                  ______ |\n\
+|  |/\/\/|                 |\/\/\| |\n\
+|  |\/\/\|     ______      |/\/\/| |\n\
+|  [/\/\/]     |\/\/\|     |\/\/\| |\n\
+|              |/\/\/|     [/\/\/] |\n\
+|              |\/\/\|             |\n\
+|              [/\/\/]             |\n\
+|                         ______   |\n\
+|   ______               |\/\/\|   |\n\
+|   |\/\/\|              |/\/\/|   |\n\
+|   |/\/\/|              |\/\/\|   |\n\
+|   |\/\/\|              [/\/\/]   |\n\
+|   [/\/\/]                        |\n\
+|__________________________________|"
+
+class Card:
+  def __init__(self, rank, suit):
+      self.rank = rank
+      self.suit = suit
+    
+  def __str__(self):
+    if self.rank == "A":
+      return f" _________\n|{self.rank}        |\n|         |\n|    {self.suit}    |\n|         |\n|         |\n|_________|"
+
+    elif self.rank == "2":
+      return f" _________\n|{self.rank}        |\n|    {self.suit}    |\n|         |\n|         |\n|    {self.suit}    |\n|_________|"
+
+    elif self.rank == "3":
+      return f" _________\n|{self.rank}   {self.suit}    |\n|         |\n|    {self.suit}    |\n|         |\n|    {self.suit}    |\n|_________|"
+
+    elif self.rank == "4":
+      return f" _________\n|{self.rank}        |\n|  {self.suit}   {self.suit}  |\n|         |\n|         |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "5":
+      return f" _________\n|{self.rank}        |\n|  {self.suit}   {self.suit}  |\n|    {self.suit}    |\n|         |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "6":
+      return f" _________\n|{self.rank} {self.suit}   {self.suit}  |\n|         |\n|  {self.suit}   {self.suit}  |\n|         |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "7":
+      return f" _________\n|{self.rank} {self.suit}   {self.suit}  |\n|    {self.suit}    |\n|  {self.suit}   {self.suit}  |\n|         |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "8":
+      return f" _________\n|{self.rank} {self.suit}   {self.suit}  |\n|    {self.suit}    |\n|  {self.suit}   {self.suit}  |\n|    {self.suit}    |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "9":
+      return f" _________\n|{self.rank} {self.suit}   {self.suit}  |\n|  {self.suit}   {self.suit}  |\n|    {self.suit}    |\n|  {self.suit}   {self.suit}  |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "10":
+      return f" _________\n|{self.rank}       |\n|  {self.suit}   {self.suit}  |\n|  {self.suit} {self.suit} {self.suit}  |\n|  {self.suit} {self.suit} {self.suit}  |\n|  {self.suit}   {self.suit}  |\n|_________|"
+
+    elif self.rank == "J":
+      return f" _________\n|{self.rank}        |\n|{self.suit}  👑    |\n|   👦    |\n|         |\n|         |\n|_________|"
+
+    elif self.rank == "Q":
+      return f" _________\n|{self.rank}        |\n|{self.suit}  👑    |\n|   👸    |\n|         |\n|         |\n|_________|"
+
+    elif self.rank == "K":
+      return f" _________\n|{self.rank}        |\n|{self.suit}  👑    |\n|   👨    |\n|         |\n|         |\n|_________|"
+
+class Heart(Card):
+  def __init__(self, rank):
+      super().__init__(rank, "♥")
+
+class Spade(Card):
+  def __init__(self, rank):
+      super().__init__(rank, "♠")
+
+class Diamond(Card):
+  def __init__(self, rank):
+      super().__init__(rank, "♦")
+
+class Club(Card):
+  def __init__(self, rank):
+      super().__init__(rank, "♣")
+    
+#spade suite
+spade_a = Spade("A")
+spade_2 = Spade("2")
+spade_3 = Spade("3")
+spade_4 = Spade("4")
+spade_5 =  Spade("5")
+spade_6 = Spade("6")
+spade_7 =  Spade("7")
+spade_8 = Spade("8")
+spade_9 = Spade("9")
+spade_10 = Spade("10")
+spade_j = Spade("J")
+spade_q = Spade("Q")
+spade_k = Spade("K")
+#heart suite
+heart_a = Heart("A")
+heart_2 = Heart("2")
+heart_3 = Heart("3")
+heart_4 = Heart("4")
+heart_5 = Heart("5")
+heart_6 = Heart("6")
+heart_7 = Heart("7")
+heart_8 = Heart("8")
+heart_9 = Heart("9")
+heart_10 = Heart("10")
+heart_j = Heart("J")
+heart_q = Heart("Q")
+heart_k = Heart("K")
+
+#diamond suite 
+diamond_a = Diamond("A")
+diamond_2 = Diamond("2")
+diamond_3 = Diamond("3")
+diamond_4 = Diamond("4")
+diamond_5 =  Diamond("5")
+diamond_6 = Diamond("6")
+diamond_7 =  Diamond("7")
+diamond_8 = Diamond("8")
+diamond_9 = Diamond("9")
+diamond_10 = Diamond("10")
+diamond_j = Diamond("J")
+diamond_q = Diamond("Q")
+diamond_k = Diamond("K")
+
+#club suite 
+clubs_a = Club("A")
+clubs_2 = Club("2")
+clubs_3 = Club("3")
+clubs_4 = Club("4")
+clubs_5 =  Club("5")
+clubs_6 = Club("6")
+clubs_7 = Club("7")
+clubs_8 = Club("8")
+clubs_9 = Club("9")
+clubs_10 = Club("10")
+clubs_j = Club("J")
+clubs_q = Club("Q")
+clubs_k = Club("K")
+#############################################################################
+markers = [spade_a, spade_2, spade_3, spade_4, spade_5]
+cards = [spade_6,  spade_7,  spade_8,  spade_9,  spade_10, 
+         spade_j,  spade_q,  spade_k, heart_a, heart_2, heart_3,
+         heart_4, heart_5, heart_6,  heart_7,  heart_8, heart_9,
+         heart_10, heart_j,  heart_q,  heart_k, diamond_a,
+         diamond_2, diamond_3, diamond_4, diamond_5, diamond_6, diamond_7,
+         diamond_8,  diamond_9, diamond_10, diamond_j,  diamond_q,
+         diamond_k, clubs_a, clubs_2, clubs_3, clubs_4, clubs_5, 
+         clubs_6,  clubs_7,  clubs_8,  clubs_9, clubs_10, clubs_j,
+         clubs_q,  clubs_k]
+##############################################################################
+
+players = []
+start_flag = False
+stacked_pile = []
+
+while not start_flag:
+    try:
+        no_of_players = int(input("Please enter number of players (1-5): "))
+        if no_of_players < 1:
+            print("Those are not enough players to play this game")
+        elif no_of_players > 5:
+            print("That's too many players to play this game")
+        else:
+            start_flag = True
+            count = 1
+            while count <= no_of_players:
+              player = input("Enter player name: ")
+              if len(player) == 0:
+                print("Please enter a player name.")
+              else:
+                players.append(player)
+                count += 1
+
+    except ValueError:
+    
+        print("Eh Lee last warning alr ah")
+        start_flag = False
+      
+      
+if start_flag:
+  print("Welcome to the game! I will be placing 5 cards, in 5 piles faced down.")
+  input("-- Press Enter To Continue--")
+  print(table)
+  print("." * 80)
+  #markers are being placed in each pile first
+  piles = [[] for _ in range(5)] 
+  for i, marker in enumerate(markers):
+      piles[i].append(marker)
+  
+  #four random cards are placed in each pile following that
+  for _ in range(4):
+    for pile in piles:
+        random_card = random.choice(cards)
+        pile.append(random_card)
+        cards.remove(random_card)
+  
+  #showing each player their cards in a pile
+  for i in range(len(players)):
+    print(f"Okay {players[i]}, I will now be showing you your cards. Think of a card and remember it.")
+    random.shuffle(piles[i])
+    print(f"{players[i]}'s Deck:")
+    for p in range(len(str(spade_a).splitlines())):
+      for item in piles[i]:
+          print(str(item).splitlines()[p], end=" ")
+      print()
+    input("-- Press Enter To Continue--")
+    print("." * 80)
+
+  #automated shuffle is being done. since i cant get my users to shuffle 
+  for i in range(0,len(players)):
+   random.shuffle(piles[i])
+  
+  #STACKING ONE
+  stackinput = 1,2,3,4,5
+  stacked_pile = []
+  stacking_flag = False
+  while not stacking_flag:
+    try:
+      stackinput = input(f"Now, {players[0]}, you can stack the card piles based on any order that you like. \n(eg: 1,3,5,4,2)")
+      stackinput = stackinput.split(",")
+      stackinput = [int(value) for value in stackinput]
+      if len(stackinput) > 5:
+        print("You have entered more than 5 stacks. Please stack the 5 piles in a comma-seperated list (eg: 1,3,5,4,2).")
+        stacking_pile = False
+      elif len(stackinput)<5:
+        print(f"Please stack all piles in a comma-seperated list (eg: 1,3,5,4,2). You have only entered {len(stackinput)} piles")
+        stacking_pile = False
+      elif sorted(stackinput) != [1,2,3,4,5]:
+        print("Please stack all piles in a comma-seperated list (eg: 1,3,5,2,4). You might have entered a pile number more than once.")
+      else:
+        try: 
+          for i in stackinput:
+            for card in piles[i-1]:
+              stacked_pile.append(card)
+              stacking_flag = True
+        except(IndexError):
+          print("Invalid input. Please enter a comma-separated list of integers within the range of the number of piles.(eg: 1,3,4,5,2)")
+          stacking_flag = False
+    except(ValueError, TypeError):
+      print("Invalid input. Please enter a comma-separated list of integers.")
+      stacking_flag = False
+
+  print()
+  piles = [[] for _ in range(5)] 
+  for i in range(0,5):
+    piles[i].append(stacked_pile[i::5])
+  print("--")
+  stacked_pile = []
+
+  #STACKING TWO
+  stacking_flag = False
+  try: 
+    while not stacking_flag:
+      if len(players) > 1:
+        stackinput = input(f"Now, {players[1]}, you can stack the card piles based on any order that you like. \n(eg: 1,3,5,4,2)")
+      else:
+        stackinput = input(f"Now, {players[0]}, you can stack the card piles based on any order that you like. \n(eg: 1,3,5,4,2)")
+        
+      stackinput = stackinput.split(",")
+      stackinput = [int(value) for value in stackinput]
+      if len(stackinput) > 5:
+        print("You have entered more than 5 stacks. Please stack the 5 piles in a comma-seperated list (eg: 1,3,5,4,2).")
+        stacking_pile = False
+      elif len(stackinput)<5:
+        print(f"Please stack all piles in a comma-seperated list (eg: 1,3,5,4,2). You have only entered {len(stackinput)} piles")
+        stacking_pile = False
+      elif sorted(stackinput) != [1,2,3,4,5]:
+        print("Please stack all piles in a comma-seperated list (eg: 1,3,5,2,4). You might have entered a pile number more than once.")
+        stacking_pile = False
+      else:
+        try: 
+          for i in stackinput:
+            for pile in piles[i-1]:
+              for card in pile:
+                stacked_pile.append(card)
+                stacking_flag = True
+        except(IndexError):
+          print("Invalid input. Please enter a comma-separated list of integers within the range of the number of piles.(eg: 1,3,4,5,2)")
+          stacking_flag = False
+  except(ValueError, TypeError):
+    print("Invalid input. Please enter a comma-separated list of integers.")
+    stacking_flag = False
+
+#CUTTING ONE
+intermediate_pile = []
+cut_one = 12
+cut_flag = False
+while not cut_flag:
+  try:
+    if len(players) <= 2:
+      cut_one = int(input(f"Now, {players[0]} how many cards do you want to cut off from the top of the stack? Please input a digit from 1 - 25 :"))
+    else:
+      cut_one = int(input(f"Now, {players[2]} how many cards do you want to cut off from the top of the stack? Please input a digit from 1 - 25 :"))
+    
+    if cut_one > 25 or cut_one<1:
+      print("Please input a number from 1 - 25")
+      cut_flag = False
+    else:
+      cut_pile = stacked_pile[0:cut_one:1]
+      intermediate_pile = stacked_pile[cut_one::]
+      for card in cut_pile:
+        intermediate_pile.append(card)
+        cut_flag = True
+  except(ValueError):
+    print("Please input a number from 1 - 25")
+    cut_flag = False
+    
+
+print("I will now be placing the cards faced up on the table.")
+input("-- Press Enter To Continue--")
+print("-"*80)
+
+groups = []
+for i in range(0, len(intermediate_pile), 5):
+  group = intermediate_pile[i:i+5]
+  groups.append(group)
+  print(f"GROUP {i//5+1}:")
+  for p in range(len(str(spade_a).splitlines())):
+    for item in group:
+      print(str(item).splitlines()[p], end="")
+    print()
+  
+print("The cards are all faced up now, in groups of 5.")
+print("-"*80)
+  
+indexes = []
+  
+ace_index = None
+two_index = None 
+three_index = None
+four_index = None 
+five_index = None
+  
+for group in groups:
+  if spade_a in group:
+    ace_index = group.index(spade_a)
+  if spade_2 in group:
+    two_index = group.index(spade_2)
+  if spade_3 in group:
+    three_index = group.index(spade_3)
+  if spade_4 in group:
+    four_index = group.index(spade_4)
+  if spade_5 in group:
+    five_index = group.index(spade_5)
+  
+indexes.append(ace_index)
+indexes.append(two_index)
+indexes.append(three_index)
+indexes.append(four_index)
+indexes.append(five_index)
+  
+for n in range(0, len(players)):
+  while True:
+      try:
+          location_input = int(input(f"{players[n]}!! Which pile is your card in? (1-5)"))
+          if 1 <= location_input <= 5:
+              group = groups[location_input-1]
+              print(f"{players[n]}, your card was \n{group[indexes[n]]}")
+              break
+          else:
+              print("Please enter a number between 1 and 5.")
+      except ValueError:
+          print("Please enter a valid integer.")
+print("-"*80)
